@@ -64,9 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: cubit.screens[cubit.currentIndex],
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          //cubit.getBusiness();
-        },
+        onPressed: () {},
         child: Icon(Icons.add),
       ),
     );

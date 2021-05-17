@@ -16,8 +16,9 @@ class ArticleItem extends StatelessWidget {
             height: 120,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image:
-                  DecorationImage(image: NetworkImage(list['urlToImage'].toString()), fit: BoxFit.cover),
+              image: DecorationImage(
+                  image: NetworkImage(list['urlToImage'].toString()),
+                  fit: BoxFit.cover),
             ),
           ),
           SizedBox(
