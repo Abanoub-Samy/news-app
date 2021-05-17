@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/cubit/bloc_observer.dart';
 import 'package:news_app/cubit/cubit.dart';
+import 'package:news_app/cubit/dio_helper.dart';
 import 'package:news_app/cubit/states.dart';
 
 void main() {
+  Bloc.observer = MyBlocObserver();
+  DioHelper.init();
   runApp(MyApp());
 }
 
@@ -12,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext ctx) => AppCubit(),
+      create: (BuildContext ctx) => AppCubit()..getBusiness(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (ctx, state) {},
         builder: (ctx, state) {
@@ -59,6 +63,12 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       body: cubit.screens[cubit.currentIndex],
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          //cubit.getBusiness();
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
