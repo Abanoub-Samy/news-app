@@ -7,16 +7,17 @@ import 'package:news_app/cubit/cubit.dart';
 import 'package:news_app/cubit/dio_helper.dart';
 import 'package:news_app/cubit/states.dart';
 import 'package:news_app/screens/search_screen.dart';
-import 'package:news_app/screens/web_view-screen.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   DioHelper.init();
   await CacheHelper.init();
   bool? isDark = CacheHelper.getData('isDark');
   runApp(BlocProvider(
-      create: (BuildContext ctx) => AppCubit()..getBusiness()..changeAppMode(fromShared: isDark),
+      create: (BuildContext ctx) => AppCubit()
+        ..getBusiness()
+        ..changeAppMode(fromShared: isDark),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (ctx, state) {},
         builder: (ctx, state) {
@@ -26,9 +27,10 @@ void main() async{
 }
 
 class MyApp extends StatelessWidget {
-  final bool isDark ;
+  final bool isDark;
 
-  MyApp(this.isDark) ;
+  MyApp(this.isDark);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -67,13 +69,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          iconTheme: IconThemeData()
-      ),
+          iconTheme: IconThemeData()),
       themeMode:
           AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
       home: MyHomePage(title: 'Flutter Demo Home Page'),
       routes: {
-        SearchScreen.routeName :(ctx) => SearchScreen(),
+        SearchScreen.routeName: (ctx) => SearchScreen(),
       },
     );
   }

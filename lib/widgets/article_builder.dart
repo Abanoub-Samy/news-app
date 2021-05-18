@@ -4,23 +4,25 @@ import 'package:news_app/widgets/article_item.dart';
 
 class ArticleBuilder extends StatelessWidget {
   final list;
+  final isSearch;
 
-  ArticleBuilder({this.list});
+  ArticleBuilder({this.list, this.isSearch = false});
 
   @override
   Widget build(BuildContext context) {
-
-    if(list.length > 0){
+    if (list.length > 0) {
       return ListView.separated(
           physics: BouncingScrollPhysics(),
           itemBuilder: (context, index) => ArticleItem(list[index]),
           separatorBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Divider(),
-          ),
+                padding: const EdgeInsets.all(8.0),
+                child: Divider(),
+              ),
           itemCount: AppCubit.get(context).business.length);
-    }else{
-      return Center(child: CircularProgressIndicator());
+    } else {
+      return isSearch
+          ? Container()
+          : Center(child: CircularProgressIndicator());
     }
     // return ConditionalBuilder(
     //   condition: list.length > 0,

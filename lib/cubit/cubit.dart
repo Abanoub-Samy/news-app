@@ -16,8 +16,8 @@ class AppCubit extends Cubit<AppStates> {
   int currentIndex = 0;
 
   void changeAppMode({bool? fromShared}) {
-    if(fromShared != null)
-      isDark =fromShared ;
+    if (fromShared != null)
+      isDark = fromShared;
     else
       isDark = !isDark;
     CacheHelper.putData('isDark', isDark).then((value) {
@@ -130,10 +130,10 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   void getSearch(String value) {
-    search =[];
+    search = [];
     emit(NewsGetSearchLoadingState());
     DioHelper.getDate(
-        'v2/everything',
+      'v2/everything',
       {
         'q': '$value',
         'apiKey': '65f7f556ec76449fa7dc7c0069f040ca',
@@ -143,10 +143,9 @@ class AppCubit extends Cubit<AppStates> {
       search = value.data['articles'];
       print(search[0]['title']);
       emit(NewsGetSearchSuccessState());
-    }).catchError((onError){
+    }).catchError((onError) {
       print(onError.toString());
       emit(NewsGetSearchErrorState(onError));
     });
   }
-
 }

@@ -5,8 +5,6 @@ import 'package:news_app/cubit/states.dart';
 import 'package:news_app/widgets/article_builder.dart';
 
 class SearchScreen extends StatelessWidget {
-
-
   static String routeName = '/search-screen';
 
   @override
@@ -34,7 +32,10 @@ class SearchScreen extends StatelessWidget {
                     },
                     decoration: InputDecoration(
                       labelText: 'Search',
-                      prefix: Icon(Icons.search,color: Colors.white,),
+                      prefix: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
                     ),
                     onChanged: (value) {
                       AppCubit.get(context).getSearch(value);
@@ -42,7 +43,10 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: ArticleBuilder(list: list,),
+                  child: ArticleBuilder(
+                    list: list,
+                    isSearch: true,
+                  ),
                 )
               ],
             ),
