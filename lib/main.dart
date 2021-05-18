@@ -7,6 +7,7 @@ import 'package:news_app/cubit/cubit.dart';
 import 'package:news_app/cubit/dio_helper.dart';
 import 'package:news_app/cubit/states.dart';
 import 'package:news_app/screens/search_screen.dart';
+import 'package:news_app/screens/web_view-screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'News App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.purple,
