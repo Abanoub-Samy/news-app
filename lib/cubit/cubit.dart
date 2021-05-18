@@ -11,8 +11,13 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(InitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-
+  bool isDark = true;
   int currentIndex = 0;
+
+  void changeAppMode() {
+    isDark = !isDark;
+    emit(AppChangeMode());
+  }
 
   List<BottomNavigationBarItem> bottomItems = [
     BottomNavigationBarItem(

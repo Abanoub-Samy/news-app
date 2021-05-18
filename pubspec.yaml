@@ -27,6 +27,7 @@ dependencies:
   flutter_bloc: ^7.0.0
   dio: ^4.0.0
   conditional_builder:  ^1.0.2
+  hexcolor: ^2.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
