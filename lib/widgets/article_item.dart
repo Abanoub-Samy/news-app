@@ -35,10 +35,7 @@ class ArticleItem extends StatelessWidget {
                     Expanded(
                       child: Text(
                         list['title'].toString(),
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context).textTheme.headline1,
                         maxLines: 4,
                         overflow: TextOverflow.ellipsis,
                       ),

@@ -6,6 +6,7 @@ import 'package:news_app/cubit/cache_helper.dart';
 import 'package:news_app/cubit/cubit.dart';
 import 'package:news_app/cubit/dio_helper.dart';
 import 'package:news_app/cubit/states.dart';
+import 'package:news_app/screens/search_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,13 @@ class MyApp extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.purple,
           ),
+          textTheme: TextTheme(
+            headline1: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           iconTheme: IconThemeData()),
       darkTheme: ThemeData(
           primaryColor: Colors.deepOrange,
@@ -51,10 +59,21 @@ class MyApp extends StatelessWidget {
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.deepOrange,
           ),
-          iconTheme: IconThemeData()),
+          textTheme: TextTheme(
+            headline1: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          iconTheme: IconThemeData()
+      ),
       themeMode:
           AppCubit.get(context).isDark ? ThemeMode.dark : ThemeMode.light,
       home: MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        SearchScreen.routeName :(ctx) => SearchScreen(),
+      },
     );
   }
 }
@@ -76,7 +95,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, SearchScreen.routeName);
+            },
             icon: Icon(Icons.search),
           ),
           IconButton(

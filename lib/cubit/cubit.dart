@@ -59,6 +59,7 @@ class AppCubit extends Cubit<AppStates> {
   List<dynamic> business = [];
   List<dynamic> sports = [];
   List<dynamic> science = [];
+  List<dynamic> search = [];
 
   void getBusiness() {
     emit(NewsGetBusinessLoadingState());
@@ -127,4 +128,25 @@ class AppCubit extends Cubit<AppStates> {
       emit(NewsGetScienceSuccessState());
     }
   }
+
+  void getSearch(String value) {
+    search =[];
+    emit(NewsGetSearchLoadingState());
+    DioHelper.getDate(
+        'v2/everything',
+      {
+        'q': '$value',
+        'apiKey': '65f7f556ec76449fa7dc7c0069f040ca',
+      },
+    ).then((value) {
+      //print(value.data['articles'][0]['title'].toString());
+      search = value.data['articles'];
+      print(search[0]['title']);
+      emit(NewsGetSearchSuccessState());
+    }).catchError((onError){
+      print(onError.toString());
+      emit(NewsGetSearchErrorState(onError));
+    });
+  }
+
 }
