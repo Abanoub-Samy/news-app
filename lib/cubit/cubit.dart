@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/cubit/cache_helper.dart';
 import 'package:news_app/cubit/dio_helper.dart';
 import 'package:news_app/cubit/states.dart';
 import 'package:news_app/screens/business_screen.dart';
@@ -11,12 +12,17 @@ class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(InitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
-  bool isDark = true;
+  bool isDark = false;
   int currentIndex = 0;
 
-  void changeAppMode() {
-    isDark = !isDark;
-    emit(AppChangeMode());
+  void changeAppMode({bool? fromShared}) {
+    if(fromShared != null)
+      isDark =fromShared ;
+    else
+      isDark = !isDark;
+    CacheHelper.putData('isDark', isDark).then((value) {
+      emit(AppChangeMode());
+    });
   }
 
   List<BottomNavigationBarItem> bottomItems = [
