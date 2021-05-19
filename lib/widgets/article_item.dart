@@ -12,7 +12,7 @@ class ArticleItem extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => WebViewScreen(list['url'])),
+          MaterialPageRoute(builder: (context) => WebViewScreen(list['url'].toString())),
         );
       },
       child: Padding(
